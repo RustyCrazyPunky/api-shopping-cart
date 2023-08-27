@@ -1,10 +1,12 @@
 package com.mlt.api.apishoppingcart.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -32,4 +34,6 @@ public class ShoppingCartUser implements Serializable {
     @Column(name = "username", nullable = false)
     private String username;
 
+    @OneToOne(mappedBy = "shoppingCartUser", cascade = CascadeType.ALL)
+    private ShoppingCart shoppingCart;
 }

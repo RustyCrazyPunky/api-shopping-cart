@@ -1,6 +1,7 @@
 package com.mlt.api.apishoppingcart.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,7 +35,10 @@ public class ShoppingCart {
     @JoinColumn(name = "user_id")
     private ShoppingCartUser shoppingCartUser;
 
-    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL)
+    @Column(name = "closed")
+    private Boolean closed;
+
+    @OneToMany(mappedBy = "shoppingCart", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<ShoppingCartItem> shoppingCartItems;
 
 }
